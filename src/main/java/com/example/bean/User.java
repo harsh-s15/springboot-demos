@@ -6,6 +6,7 @@ import java.util.List;
 
 public class User {
     private String username;
+
     private String passwordHash;
 
     private List<String> fruits = new ArrayList<>();
@@ -32,5 +33,15 @@ public class User {
 
     public void setFruits(List<String> fruits) {
         this.fruits = fruits;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", fruits=" + fruits +
+                '}';
     }
 }

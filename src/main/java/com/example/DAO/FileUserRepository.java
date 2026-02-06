@@ -23,11 +23,21 @@ public class FileUserRepository implements UserRepository{
 
     private Map<String, User> load() {
         try {
-            if (!Files.exists(file)) return new HashMap<>();
+            if (!Files.exists(file)) {
+                return new HashMap<>();
+            }
+
+            String content = Files.readString(file);
+
+            if (content == null || content.isBlank()) {
+                return new HashMap<>();
+            }
+
             return mapper.readValue(
-                    Files.readString(file),
-                    new TypeReference<>() {}
+                    content,
+                    new TypeReference<Map<String, User>>() {}
             );
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
